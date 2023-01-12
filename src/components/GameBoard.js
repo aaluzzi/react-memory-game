@@ -20,12 +20,15 @@ function GameBoard(props) {
 
     const onClick = (id) => {
         if (allCards[id].clicked) {
-            //lose game
-            console.log("clicked");
-            props.loseGame();
+            props.endGame(props.score);
             setAllCards(shuffle(getAllCards()));
-            //setBoard(getUniqueSlice(allCards));
         } else {
+            if (props.score >= getAllCards().length - 1) {
+                props.winGame(props.score + 1);
+                return;
+            }
+            props.addPoint();
+
             //update as clicked and shuffle
             //avoids mutation, good practice in react
             setAllCards(shuffle(allCards.map(card => {
@@ -35,7 +38,6 @@ function GameBoard(props) {
                     return card;
                 }
             })));
-            props.addPoint();
         }
     }
 

@@ -5,13 +5,16 @@ html,body {
     background-color:rgb(240, 240, 240);
 }
 
-.help {
-    font-size: min(5vmin, 2.5rem);
-    padding: 2vmin;
+.title {
+    font-size: min(10vmin, 2.5rem);
 }
 
-.title,.score {
-    font-size: min(10vmin, 2.5rem);
+.help {
+    font-size: min(6vmin, 2.5rem);
+}
+
+.score {
+    font-size: min(8vmin, 2.5rem);
 }
 
 .app {

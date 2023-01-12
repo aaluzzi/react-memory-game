@@ -17,30 +17,34 @@ function App() {
     setPlaying(true);
   }
 
-  const loseGame = () => {
+  const endGame = (finalScore) => {
+    setScore(finalScore);
     setPlaying(false);
-    if (score > highScore) {
-      setHighScore(score);
-      alert(`New high score of ${score}!`);
+    if (finalScore > highScore) {
+      setHighScore(finalScore);
+      alert(`New high score of ${finalScore}!`);
     }
+  }
+
+  const winGame = (finalScore) => {
+    alert("WOW! You selected every emoji once! You win.")
+    endGame(finalScore);
   }
 
   if (playing) {
     return (
       <div className="app">
         <div className="score">Score: <b>{score}</b> - Best: <b>{highScore}</b></div>
-        <GameBoard addPoint={addPoint} loseGame={loseGame} />
+        <GameBoard score={score} addPoint={addPoint} endGame={endGame} winGame={winGame}/>
       </div>
     );
   } else {
     return (
       <div className="app">
-        <div>
-          <div className="title"><b>Memory Game 🧠</b></div>
-          {score === 0
-            ? <div className="help">Get points by clicking emojis, but don't click one more than once!</div>
-            : <div className="help">Game over! Your score: {score}</div>}
-        </div>
+        <div className="title"><b>Memory Game 🧠</b></div>
+        {score === 0
+          ? <div className="help">Get points by clicking emojis, but don't click one more than once!</div>
+          : <div className="help">Game over! Your score: {score}</div>}
         <div className="board" style={{gridTemplateColumns: "repeat(1, 0.5fr)"}}>
           <Card onClick={startGame} emoji="▶️"></Card>
         </div>      
