@@ -1,0 +1,34 @@
+html,body {
+    background-color:rgb(240, 240, 240);
+}
+
+.score {
+    font-size: 2rem;
+}
+
+.app {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2vw;
+}
+
+.card {
+    box-shadow: 5px 5px 15px rgb(141, 141, 141);
+    border-radius: 1rem;
+    background-color: white;
+    padding: 1rem 1.5rem 2rem 1.5rem;
+    font-size: 8rem;
+    user-select: none;
+}
+
+.card:hover {
+    background-color:rgb(198, 251, 255);
+}
