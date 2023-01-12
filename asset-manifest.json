@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/react-memory-game/static/css/main.982dcba0.css",
+    "main.js": "/react-memory-game/static/js/main.772c325a.js",
+    "index.html": "/react-memory-game/index.html",
+    "main.982dcba0.css.map": "/react-memory-game/static/css/main.982dcba0.css.map",
+    "main.772c325a.js.map": "/react-memory-game/static/js/main.772c325a.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.982dcba0.css",
+    "static/js/main.772c325a.js"
+  ]
+}
