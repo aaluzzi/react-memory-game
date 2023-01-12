@@ -13,6 +13,7 @@ function App() {
   }
 
   const startGame = () => {
+    setScore(0);
     setPlaying(true);
   }
 
@@ -20,8 +21,8 @@ function App() {
     setPlaying(false);
     if (score > highScore) {
       setHighScore(score);
+      alert(`New high score of ${score}!`);
     }
-    setScore(0);
   }
 
   if (playing) {
@@ -36,7 +37,9 @@ function App() {
       <div className="app">
         <div>
           <div className="title"><b>Memory Game 🧠</b></div>
-          <div className="help">Get points by clicking emojis, but don't click one more than once!</div>
+          {score === 0
+            ? <div className="help">Get points by clicking emojis, but don't click one more than once!</div>
+            : <div className="help">Game over! Your score: {score}</div>}
         </div>
         <div className="board" style={{gridTemplateColumns: "repeat(1, 0.5fr)"}}>
           <Card onClick={startGame} emoji="▶️"></Card>
