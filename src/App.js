@@ -3,19 +3,23 @@ import React, {useState} from 'react';
 import GameBoard from './components/GameBoard';
 
 function App() {
-  const [points, setPoints] = useState(0);
+  const [score, setScore] = useState(0);
+  const [highScore, setHighScore] = useState(0);
 
   const addPoint = () => {
-    setPoints(points + 1);
+    setScore(score + 1);
   }
 
   const loseGame = () => {
-    setPoints(0);
+    if (score > highScore) {
+      setHighScore(score);
+    }
+    setScore(0);
   }
 
   return (
     <div className="app">
-      <div className="score">Score: <b>{points}</b></div>
+      <div className="score">Score: <b>{score}</b> - Best: <b>{highScore}</b></div>
       <GameBoard addPoint={addPoint} loseGame={loseGame} />
     </div>
   );
