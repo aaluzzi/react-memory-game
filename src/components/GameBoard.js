@@ -2,26 +2,33 @@ import React, {useState} from 'react';
 import Card from './Card';
 
 function GameBoard(props) {
-    const shuffleBoard = (board) => {
-        const shuffled = [...board];
+    const shuffle = (cards) => {
+        const shuffled = [...cards];
         shuffled.sort((a, b) => 0.5 - Math.random());
-        return shuffled.map((card, index) => {
-            return {...card, id: index};
-        });
+
+        //make sure one of the first 6 hasn't been clicked
+        if (shuffled.slice(0, 6).some(card => !card.clicked)) {
+            return shuffled.map((card, index) => {
+                return {...card, id: index};
+            });
+        } else {
+            return shuffle(cards);
+        }
     };
 
-    const [board, setBoard] = useState(shuffleBoard(initBoard()))
+    const [allCards, setAllCards] = useState(shuffle(getAllCards()));
 
     const onClick = (id) => {
-        if (board[id].clicked) {
+        if (allCards[id].clicked) {
             //lose game
             console.log("clicked");
             props.loseGame();
-            setBoard(shuffleBoard(initBoard()));
+            setAllCards(shuffle(getAllCards()));
+            //setBoard(getUniqueSlice(allCards));
         } else {
             //update as clicked and shuffle
             //avoids mutation, good practice in react
-            setBoard(shuffleBoard(board.map(card => {
+            setAllCards(shuffle(allCards.map(card => {
                 if (card.id === id) {
                     return {...card, clicked: true};
                 } else {
@@ -34,12 +41,12 @@ function GameBoard(props) {
 
     return (
         <div className="board">
-            {board.map(card => <Card key={card.id} id={card.id} emoji={card.emoji} onClick={onClick}/>)}
+            {allCards.slice(0, 6).map(card => <Card key={card.id} id={card.id} emoji={card.emoji} onClick={onClick}/>)}
         </div>
     );
 }
 
-function initBoard() {
+function getAllCards() {
     return [{
         emoji: "😀",
     }, {
@@ -56,6 +63,18 @@ function initBoard() {
         emoji: "🤔",
     }, {
         emoji: "😘",
+    }, {        
+        emoji: "😮",
+    }, {
+        emoji: "😛",
+    }, {
+        emoji: "😴",
+    }, {
+        emoji: "☹️"
+    }, {
+        emoji: "😇"
+    }, {
+        emoji: "😍"
     }].map(card => {return {...card, clicked: false}});
 }
 
