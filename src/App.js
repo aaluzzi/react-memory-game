@@ -29,7 +29,7 @@ function App() {
       <div className="score">Score: <b>{score}</b> - Best: <b>{highScore}</b></div>
       {playing 
         ? <GameBoard addPoint={addPoint} loseGame={loseGame} />
-        : <Card onClick={startGame} emoji="▶️"></Card>
+        : <div className="board" style={{gridTemplateColumns: "repeat(1, 0.5fr)"}}><Card onClick={startGame} emoji="▶️"></Card></div>
       }
     </div>
   );
